@@ -1,5 +1,7 @@
 package com.example.factoryMode.simpleFactory;
 
+import java.lang.reflect.Method;
+
 /**
  * @author zpp
  * 测试工厂类
@@ -10,8 +12,9 @@ public class Test {
          * 简单工厂测试
          */
 
-        Fruit apple = SimpleFactory.createFruit("apple");
+        Fruit apple = (Apple)SimpleFactory.createFruit("apple");
         apple.show();
+        ((Apple) apple).buy("565");
         Fruit banana = SimpleFactory.createFruit("banana");
         banana.show();
         /**
@@ -21,5 +24,9 @@ public class Test {
         apple1.show();
         Fruit b1 = SimpleFactoryReflex.createFruit(Banana.class);
         b1.show();
+
+        Class<?> c1  = Class.forName(Apple.class.getName());
+        Method met = c1.getMethod("buy",String.class);
+        met.invoke(c1.newInstance(),"多少钱啊");
     }
 }
