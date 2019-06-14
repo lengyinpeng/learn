@@ -28,5 +28,9 @@ public class Test {
         Class<?> c1  = Class.forName(Apple.class.getName());
         Method met = c1.getMethod("buy",String.class);
         met.invoke(c1.newInstance(),"多少钱啊");
+
+        Class<?> C2 = Class.forName(Banana.class.getName());
+        Method method = C2.getMethod("bb",int.class,String.class);
+        method.invoke(C2.newInstance(),2,"love");
     }
 }

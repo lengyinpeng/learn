@@ -1,8 +1,10 @@
 package com.example.java8Demo;
 
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Java8Tester {
     public static void main(String args[]){
@@ -132,7 +134,7 @@ public class Java8Tester {
             // 解析字符串
             LocalTime date5 = LocalTime.parse("20:15:30");
             System.out.println("date5: " + date5);
-         */
+
             // 使用基本编码
             String base64encodedString = Base64.getEncoder().encodeToString("runoob?java8".getBytes("utf-8"));
             System.out.println("Base64 编码字符串 (基本) :" + base64encodedString);
@@ -153,10 +155,34 @@ public class Java8Tester {
             byte[] mimeBytes = stringBuilder.toString().getBytes("utf-8");
             String mimeEncodedString = Base64.getMimeEncoder().encodeToString(mimeBytes);
             System.out.println("Base64 编码字符串 (MIME) :" + mimeEncodedString);
+               String ss = "1";
+            List<String> list = Arrays.asList("a","c","d","b");
+            list = list.stream().filter(n ->  "a".equals(ss) ).collect(Collectors.toList());
+            list.forEach(System.out::println);
+            List<String> lists = Arrays.asList("a","c","d","b");
+            lists.stream().map(n -> Java8Tester.isNullOrEmpty(ss)).collect(Collectors.toList());
+            lists.forEach(System.out::println);
+            //list.stream().forEach(n -> System.out.println(n+"            " +list.hashCode()+"           "+n) );
+
+            String a = "1,2,3,4";
+            List<String> list = Arrays.asList(a.split(","));
+            list = list.stream().map(n -> n+"pppp").collect(Collectors.toList());
+            list.forEach(System.out::println);
+            Map<String,String> map = new HashMap<>();
+            System.out.println(map.get("123") == null);
+            map.put("1","2");
+            System.out.println(2*3);*/
+        List<String> list = Arrays.asList("a","b","c");
+        list.forEach(n->{
+            System.out.println(n);
+        });
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+    public static boolean isNullOrEmpty(String s){
+        return s == null || "".equals(s);
     }
 
     /**
